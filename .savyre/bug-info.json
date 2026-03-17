@@ -1,0 +1,12 @@
+{
+  "description": "A Stale context value usage issue was injected for React Context API Usage. Investigate the changed code path and fix the broken behaviour.",
+  "expectedOutcome": "Application behaviour should match the expected user flow after the bug is fixed.",
+  "hint": "Start from the changed component/file and trace state + props flow around the failing scenario.",
+  "difficulty": "Easy",
+  "competency": "React Context API Usage",
+  "bugFilePath": "src/App.jsx",
+  "solution": "Restore the correct component/state logic so the failing behaviour is resolved.",
+  "solutionCode": "See the corrected implementation in this branch after fixing the bug.",
+  "playwrightTests": "Playwright test should fail with bug present and pass once fix is applied.",
+  "playwrightTestSnippets": "See tests/*.spec.js for the fail-then-pass test snippets."
+}
