@@ -1,0 +1,12 @@
+{
+  "description": "Users hit a Stale context value usage failure in the React Context API Usage workflow after moving between screens. In the current branch, navigating through the primary user journey causes incorrect UI behavior and broken state transitions; the likely defect is in \"src/App.jsx\" where the Stale context value usage condition is evaluated.",
+  "expectedOutcome": "After the fix, the React Context API Usage journey should preserve correct data and UI state across route changes, and users must see stable behavior from entry action through completion without regressions.",
+  "hint": "Start by reviewing \"App.jsx\" and compare the condition and return path used for the Stale context value usage case with the expected state updates across navigation.",
+  "difficulty": "Easy",
+  "competency": "React Context API Usage",
+  "bugFilePath": "src/App.jsx",
+  "solution": "Root cause: a broken Stale context value usage branch in \"src/App.jsx\" returns or derives the wrong value because state handling is inconsistent during a cross-page transition. The fix should align the guard condition and returned payload with expected domain behavior, then propagate the corrected value to the consumer so downstream UI and assertions receive consistent state.",
+  "solutionCode": "// Example fallback patch shape for App.jsx\nconst nextValue = computeNextValue(input, context);\nif (!nextValue) {\n  return previousValue;\n}\nreturn {\n  ...previousValue,\n  ...nextValue,\n  status: \"ready\",\n};",
+  "playwrightTests": "Playwright test must fail before the fix and pass after the fix by running the same cross-page scenario and validating user-visible behavior.",
+  "playwrightTestSnippets": "Use tests/app-debug.spec.js with a fail-before-fix assertion and a pass-after-fix assertion for the same route sequence."
+}
